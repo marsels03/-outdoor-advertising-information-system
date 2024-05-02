@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/common.css"> <!-- Подключение common.css -->
+    <style>
+        /* Дополнительные стили */
+        body {
+            background-color: #f8f9fa; /* Цвет фона страницы */
+            padding: 20px; /* Отступы для контента */
+        }
+
+        table {
+            margin: 20px auto; /* Центрирование таблицы */
+            max-width: 600px; /* Максимальная ширина таблицы */
+            background-color: #fff; /* Цвет фона таблицы */
+            padding: 20px; /* Внутренние отступы таблицы */
+            border-radius: 8px; /* Закругление углов таблицы */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень таблицы */
+        }
+
+        th {
+            background-color: #007bff; /* Цвет фона заголовка */
+            color: #fff; /* Цвет текста заголовка */
+        }
+
+        form {
+            margin-top: 20px; /* Отступ сверху для формы */
+        }
+
+        input[type="text"],
+        input[type="submit"],
+        .btn {
+            margin-top: 10px; /* Отступ сверху для текстового поля, кнопки и кнопок Bootstrap */
+        }
+
+        .error {
+            background-color: #f44336; /* Цвет фона блока ошибки */
+            color: #fff; /* Цвет текста блока ошибки */
+            padding: 10px; /* Внутренние отступы блока ошибки */
+            border-radius: 8px; /* Закругление углов блока ошибки */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <table>
+                    <tr>
+                        <th colspan="2">Поиск по цене</th>
+                    </tr>
+                    <tr>
+                        <form method="POST">
+                            <td>
+                                <label for="from_price">От:</label>
+                                <input type="text" id="from_price" name="from_price" placeholder="Мин. цена" class="form-control">
+                            </td>
+                            <td>
+                                <label for="to_price">До:</label>
+                                <input type="text" id="to_price" name="to_price" placeholder="Макс. цена" class="form-control">
+                            </td>
+                            <td>
+                                <input type="submit" value="Поиск" class="btn btn-primary">
+                            </td>
+                        </form>
+                    </tr>
+                    {% if error %}
+                    <tr>
+                        <td colspan="2">
+                            <form action="../">
+                                <input type="submit" value="Вернуться к выбору варианта поиска" class="btn btn-secondary">
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="error">
+                            {% if error == 13 %}
+                            Некорректный ввод!
+                            {% else %}
+                            Билборд не найден!
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <table class="table">
+                    {% if billboard %}
+                    <thead>
+                        <tr>
+                            <th>Номер</th>
+                            <th>Цена</th>
+                            <th>Адрес</th>
+                            <th>Размер</th>
+                            <th>Качество</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bill in billboard %}
+                        <tr>
+                            <td>{{ bill['bill_id'] }}</td>
+                            <td>{{ bill['price'] }}</td>
+                            <td>{{ bill['install_address'] }}</td>
+                            <td>{{ bill['size'] }}</td>
+                            <td>{{ bill['quality'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <form action="/selects" method="GET">
+                    <button type="submit" class="btn btn-secondary">Вернуться к запросам</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <form action="/">
+                    <button type="submit" class="btn btn-primary">Вернуться на главную</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

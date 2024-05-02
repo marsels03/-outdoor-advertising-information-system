@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/common.css">
+</head>
+
+<body>
+    <div class="infodiv" id="info">
+        <h2>Меню отчетов</h2>
+
+        <table>
+            {% if role != 'director' %}
+            <tr>
+                <td>
+                    <form id="createReportForm">
+                        <label for="createReportType">Создать отчет:</label>
+                        <select id="createReportType" name="createReportType">
+                            <option value="create-sales">Отчет о продажах</option>
+                            <option value="create-rating">Рейтинг продаж</option>
+                        </select>
+                        <input type="button" value="Создать" onclick="redirectToSelected('createReportForm')">
+                    </form>
+                </td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>
+                    <form id="viewReportForm">
+                        <label for="viewReportType">Просмотреть отчет:</label>
+                        <select id="viewReportType" name="viewReportType">
+                            <option value="view-sales">Отчет о продажах</option>
+                            <option value="view-rating">Рейтинг продаж</option>
+                        </select>
+                        <input type="button" value="Просмотреть" onclick="redirectToSelected('viewReportForm')">
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 0;" colspan="3">
+                    <form action="/">
+                        <input type="submit" value="Вернуться на главную">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function redirectToSelected(formId) {
+            var selectedValue = document.getElementById(formId).elements[0].value;
+            if (formId === 'createReportForm') {
+                if (selectedValue === 'create-sales') {
+                    window.location.href = '/reports/create-sales';
+                } else if (selectedValue === 'create-rating') {
+                    window.location.href = '/reports/create-rating';
+                }
+            } else if (formId === 'viewReportForm') {
+                if (selectedValue === 'view-sales') {
+                    window.location.href = '/reports/view-sales';
+                } else if (selectedValue === 'view-rating') {
+                    window.location.href = '/reports/view-rating';
+                }
+            }
+        }
+    </script>
+</body>
+
+
+
+
+</html>

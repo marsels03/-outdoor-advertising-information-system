@@ -1,0 +1,51 @@
+{
+    "manager": [
+        "selects_handler_get",
+        "selects_handler_employees",
+        "selects_handler_owners",
+        "selects_handler_by_pos_handler_get",
+        "selects_handler_by_pos_handler_post",
+        "reports_index_handler",
+        "reports_view_sales_report",
+        "reports_create_sales_report",
+        "reports_create_rating_report",
+        "reports_view_rating_report",
+        "selects_handler_schedule"
+    ],
+    "buyer": [
+        "selects_handler_get",
+        "selects_handler_name_search_get",
+        "selects_handler_name_search_post",
+        "selects_handler_price_search_get",
+        "selects_handler_date_search_post",
+        "selects_handler_price_search_post",
+        "selects_handler_search_get",
+
+        "purchase_handler_index",
+        "purchase_handler_categories",
+        "purchase_handler_products",
+        "purchase_handler_basket",
+        "purchase_handler_create_order",
+        "purchase_handler_add_prod",
+        "purchase_handler_del_prod",
+        "purchase_handler_minus_prod",
+        "purchase_handler_plus_prod",
+        "purchase_handler_basket_clear",
+        "add_to_basket",
+        "view_rented_basket",
+        "rent_handler",
+        "availability_handler",
+        "show_availability_handler",
+        "basket_handler"
+    ],
+    "director": [
+        "reports_index_handler",
+        "reports_view_sales_report",
+        "reports_view_rating_report"
+    ],
+    "bill_owner": [
+        "reports_index_handler",
+        "reports_view_sales_report",
+        "reports_view_rating_report"
+    ]
+}

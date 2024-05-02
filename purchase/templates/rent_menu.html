@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/common.css"> <!-- Подключение common.css -->
+    <title>Главная</title>
+</head>
+
+<body>
+    <div class="infodiv" id="info">
+        <table>
+            <tr>
+                 <th>
+                     Аренда билборда
+                 </th>
+            </tr>
+                    <tr>
+                        <td>
+                            <a href="/purchase/availability">Доступность</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/purchase/basket">Корзина</a>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <a href="/">Назад</a>
+                    </td>
+                </tr>
+
+            {% if message %}
+                <div class="errordiv" id="error">
+                    {{ message }}
+                </div>
+            {% endif %}
+        </table>
+    </div>
+</body>
+
+</html>

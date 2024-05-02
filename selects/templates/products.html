@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Билборды></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Номер</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Размер</th>
+                    <th scope="col">Качество</th>
+                    {% if role == 'manager' %}
+                    <th scope="col">Управление</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for bill in billboard %}
+                <tr>
+                    <td>{{ bill['bill_id'] }}</td>
+                    <td>{{ bill['price'] }}</td>
+                    <td>{{ bill['install_address'] }}</td>
+                    <td>{{ bill['size'] }}</td>
+                    <td>{{ bill['quality'] }}</td>
+                    {% if role == 'manager' %}
+                    <td style="background-color: #ECE9E0;">
+                        <form id="delprod" action="/products/del-product" method="POST">
+                            <input type="hidden" name="bill_id" value="{{ bill['bill_id'] }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                        </form>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                {% if role == 'manager' %}
+                <tr>
+                    <td colspan="5">Генерируется автоматически</td>
+                    <td style="background-color: transparent;">
+                        <form id="addprod" method="POST" action="/products/add-product">
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="№" name="name" required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="$" name="measure" required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="A" name="price" required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="S" name="price" required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Q" name="price" required>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-success btn-block">Добавить</button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        <div class="row mt-3">
+            <div class="col">
+                <form action="/selects" method="GET">
+                    <button type="submit" class="btn btn-secondary">Вернуться к запросам</button>
+                </form>
+            </div>
+            <div class="col">
+                <form action="/">
+                    <button type="submit" class="btn btn-primary">Вернуться на главную</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

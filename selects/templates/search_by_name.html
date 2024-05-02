@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск по категории</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f5eb;
+        }
+
+        .container {
+            max-width: 700px;
+            max-height: 800px;
+            margin: 0 auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .table-container {
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #d9d9d9;
+        }
+
+        .error {
+            background-color: rgb(243, 94, 94);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            max-height: 150px;
+            margin-bottom:0;
+        }
+
+        .button-row {
+            text-align: center;
+            margin-top:0;
+        }
+
+        .button-row input[type="submit"] {
+            width: 250px;
+            height: 40px;
+            font-size: 16px;
+            background-color: #b8860b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-row input[type="submit"]:hover {
+            background-color: #cd853f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table>
+            <tr>
+                <th colspan="2">Поиск по категории</th>
+            </tr>
+            <tr>
+                <form method="POST">
+                    <td><input type="text" name="name" placeholder="Категория билборда"></td>
+                    <td><input type="submit" value="Поиск"></td>
+                </form>
+            </tr>
+        </table>
+        {% if error %}
+        <div class="error">
+            {% if error == 13 %}
+            Некорректный ввод!
+            {% else %}
+            Биллборд не найден!
+            {% endif %}
+        </div>
+        {% endif %}
+        <div class="table-container">
+            <table>
+                {% if billboard %}
+                <tr>
+                    <th>Номер</th>
+                    <th>Цена</th>
+                    <th>Адрес</th>
+                    <th>Размер</th>
+                    <th>Качество</th>
+                </tr>
+                {% for bill in billboard %}
+                <tr>
+                    <td>{{ bill['bill_id'] }}</td>
+                    <td>{{ bill['price'] }}</td>
+                    <td>{{ bill['install_address'] }}</td>
+                    <td>{{ bill['size'] }}</td>
+                    <td>{{ bill['quality'] }}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </table>
+        <div class="row mt-3">
+            <div class="col">
+                <form action="/selects" method="GET">
+                    <button type="submit" class="btn btn-secondary">Вернуться к запросам</button>
+                </form>
+            </div>
+            <div class="col">
+                <form action="/">
+                    <button type="submit" class="btn btn-primary">Вернуться на главную</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=stylesheet href="/static/style.css">
+    <title>Регистрация</title>
+</head>
+
+<body>
+    <div class="infodiv" id="info">
+        <table>
+            <tr>
+                <th>
+                    Регистрация
+                </th>
+            </tr>
+            <form action="/auth/sign-up" method="POST">
+                <tr>
+                    <td style="padding: 0;">
+                        <input type="text" placeholder="Login" name="login" autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 0;">
+                        <input type="password" placeholder="Password" name="password">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 0;">
+                        <input type="password" placeholder="Repeat password" name="password_repeat">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 0;">
+                        <input type="submit" value="Подтвердить">
+                    </td>
+                </tr>
+            </form>
+            <form action="/">
+                <tr>
+                    <td style="padding: 0;">
+                        <input type="submit" value="Вернуться на главную">
+                    </td>
+                </tr>
+            </form>
+            {% if message %}
+                <tr>
+                    <td style="padding: 0;">
+                        <div class="errordiv" id="error">
+                            {{ message }}
+                        </div>
+                    </td>
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+</body>
+</html>
+

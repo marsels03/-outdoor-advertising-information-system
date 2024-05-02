@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/common.css"> <!-- Подключение common.css -->
+    <title>Главная</title>
+</head>
+
+<body>
+    <div class="infodiv" id="info">
+        <table>
+            <tr>
+                 <th>
+                     Добро пожаловать в БилбоРай!
+                 </th>
+            </tr>
+            {% if role %}
+                {% if role=='buyer' %}
+                    <tr>
+                        <td>
+                            <a href="/purchase">Аренда билборда</a>
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if role!='director' %}
+                    <tr>
+                        <td>
+                            <a href="/selects">Меню запросов</a>
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if role !='buyer' %}
+                    <tr>
+                        <td>
+                            <a href="/reports">Посмотреть меню отчетов</a>
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td>
+                        <a href="/auth/logout">Выйти</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td>
+                        <a href="/auth">Аутентификация</a>
+                    </td>
+                </tr>
+            {% endif %}
+
+            {% if message %}
+                <div class="errordiv" id="error">
+                    {{ message }}
+                </div>
+            {% endif %}
+        </table>
+    </div>
+</body>
+
+</html>

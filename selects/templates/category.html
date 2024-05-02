@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=stylesheet href="/static/style.css">
+    <title>Категории</title>
+
+</head>
+<body>
+    <div class="infodiv" id="info">
+        <td>
+            Наименование
+        </td>
+        <table>
+            {% for category in categories %}
+                <tr>
+                    <td> {{ category['category_name'] }} </td>
+                    <td>
+                        <form action="/selects/products" method="POST">
+                            <input type=hidden name="category_id" value="{{ category['category_id'] }}">
+                            <input type="submit" value="Посмотреть продукты">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+        </table>
+        <form action="/selects">
+            <td>
+                <input type="submit" value="Вернуться к запросам">
+            </td>
+        </form>
+        </tr>
+        <form action="/">
+            <tr>
+                <td>
+                    <input type="submit" value="Вернуться на главную">
+                </td>
+            </tr>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+[
+    {
+        "rep_name": "Отчет по продажам",
+        "rep_id": "1",
+        "create_url": "/reports/create-sales",
+        "view_url": "/reports/view-sales"
+    }
+]

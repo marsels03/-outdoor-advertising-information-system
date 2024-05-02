@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/common.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .infodiv {
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-container {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .table {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="infodiv" id="cart">
+    {% if order_id %}
+    <h2>Заказ {{ order_id }} успешно оформлен. С вами свяжется менеджер.</h2>
+    {% else %}
+    <h2>Корзина</h2>
+    {% endif %}
+
+        {% if cart_items %}
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Номер</th>
+                            <th>Цена</th>
+                            <th>Адрес</th>
+                            <th>Размер</th>
+                            <th>Качество</th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart_items %}
+                            <tr>
+                                <td>{{ item['bill_id'] }}</td>
+                                <td>{{ item['price'] }}</td>
+                                <td>{{ item['install_address'] }}</td>
+                                <td>{{ item['size'] }}</td>
+                                <td>{{ item['quality'] }}</td>
+                                <td>
+                                    <form action="/purchase/basket" method="post">
+                                        <input type="hidden" name="bill_id" value="{{ item['bill_id'] }}">
+                                        <input type="hidden" name="price" value="{{ item['price'] }}">
+                                        <input type="hidden" name="install_address" value="{{ item['install_address'] }}">
+                                        <input type="hidden" name="size" value="{{ item['size'] }}">
+                                        <input type="hidden" name="quality" value="{{ item['quality'] }}">
+                                        <button type="submit" name="button_action" class="btn btn-danger" value="remove">Удалить</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="5" style="text-align: right;"><strong>Итого:</strong></td>
+                            <td><strong>{{ total }}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            {% if order_id %}
+            {% else %}
+            <p>Ваша корзина пуста</p>
+            {% endif %}
+        {% endif %}
+            <a href="/purchase/" class="btn btn-primary">Назад</a>
+        {% if order_id %}
+        {% else %}
+            <form action="/purchase/basket" method="post">
+            <button type="submit" name="button_action" class="btn btn-success" value="checkout">Оформить заказ</button>
+            </form>
+        {% endif %}
+
+        {% if message %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

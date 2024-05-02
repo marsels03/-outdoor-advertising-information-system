@@ -1,0 +1,1 @@
+select contract_id from tenant where login = '$login'

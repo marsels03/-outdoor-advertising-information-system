@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=stylesheet href="/static/style.css">
+    <title>Рейтинг по продажам</title>
+</head>
+
+<body>
+    <div class="infodiv" id="info">
+        {% if action == 'view' and result %}
+            <table>
+                <tr>
+                    <th>Номер билборда</th>
+                    <th>Рейтинг</th>
+                    <th>Доход</th>
+                </tr>
+                {% for item in result %}
+                    <tr>
+                        <td>{{ item['rrs_bill_id'] }}</td>
+                        <td>{{ item['rrs_rating_id'] }}</td>
+                        <td>{{ item['rrs_income'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <table>
+                <tr>
+                    <th>
+                        Отчет по рейтингу продаж
+                    </th>
+                </tr>
+                {% if action == 'create' %}
+                    <form action="/reports/create-rating" method="POST">
+                {% else %}
+                    <form action="/reports/view-rating" method="POST">
+                {% endif %}
+                        <tr>
+                            <td style="padding: 0;">
+                                <input type="month" placeholder="YYYY-MM" name="date" autocomplete="off">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0;">
+                                <input type="submit" value="Подтвердить">
+                            </td>
+                        </tr>
+                    </form>
+            </table>
+        {% endif %}
+        <tr>
+            <td style="padding: 0;">
+                <form action="/reports">
+                    <input type="submit" value="Вернуться к выбору отчетов">
+                </form>
+            </td>
+        </tr>
+
+        {% if create_flag %}
+            <div class="creatediv" id="create">
+                Отчет создан
+            </div>
+        {% endif %}
+
+        {% if message %}
+            <div class="errordiv" id="error">
+                {{ message }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

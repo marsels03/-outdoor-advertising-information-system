@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=stylesheet href="/static/style.css">
+    <title>Категории</title>
+
+</head>
+<body>
+    <div class="infodiv" id="info">
+        <table>
+            <tr>
+                <th>Должность</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Зарплата</th>
+            </tr>
+            {% for user in internal_users %}
+                <tr>
+                    <td> {{ user['role'] }} </td>
+                    <td> {{ user['first_name'] }} </td>
+                    <td> {{ user['second_name'] }} </td>
+                    <td> {{ user['wage'] }} </td>
+                </tr>
+            {% endfor %}
+            <tr>
+        </table>
+        <form action="/selects">
+            <td>
+                <input class='custom-button' type="submit" value="Вернуться к запросам">
+            </td>
+        </form>
+        </tr>
+        <form action="/">
+            <tr>
+                <td>
+                    <input class='custom-button' type="submit" value="Вернуться на главную">
+                </td>
+            </tr>
+        </form>
+    </div>
+</body>
+</html>

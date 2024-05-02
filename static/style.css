@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: url('img.png') center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(245, 245, 245, 0.9); /* Слегка прозрачный светлый цвет фона */
+}
+
+.container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Прозрачный белый цвет контейнера */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.table {
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden; /* Добавлено для скругленных углов */
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #d9d9d9;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* Цвет фона для <th> и <td> */
+}
+
+th {
+    background: rgba(245, 245, 245, 0.8); /* Цвет фона для <th> */
+}
+
+td input[type="submit"],
+td input[type="text"],
+input[type="password"] {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.9); /* Прозрачный белый цвет фона полей ввода */
+}
+
+input[type="password"] {
+    height: 30px;
+    padding: 5px 10px;
+}
+
+td input[type="submit"] {
+    width: 100%;
+    background-color: rgba(70, 130, 180, 0.8); /* Слегка прозрачный цвет кнопки отправки */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+td input[type="submit"]:hover {
+    background-color: rgba(0, 102, 204, 0.8); /* Слегка прозрачный цвет кнопки при наведении */
+}
+
+.delrow {
+    font-size: 18px;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delrow:hover {
+    background-color: rgba(255, 99, 71, 0.8); /* Слегка прозрачный цвет кнопки удаления при наведении */
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0066cc;
+}
+
+.custom-button {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: rgba(70, 130, 180, 0.8); /* Слегка прозрачный цвет кнопки */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: rgba(0, 102, 204, 0.8); /* Слегка прозрачный цвет кнопки при наведении */
+}
+
+.error {
+    background-color: rgba(255, 99, 71, 0.8); /* Слегка прозрачный цвет блока ошибки */
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+

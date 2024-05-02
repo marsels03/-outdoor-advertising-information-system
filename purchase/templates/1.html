@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/common.css"> <!-- Подключение common.css -->
+
+    <style>
+        body {
+            background-color: #f8f9fa; /* Цвет фона страницы */
+            padding: 20px; /* Отступы для контента */
+        }
+
+        .infodiv {
+            margin: 20px auto; /* Центрирование блока */
+            max-width: 600px; /* Максимальная ширина блока */
+            background-color: #fff; /* Цвет фона блока */
+            padding: 20px; /* Внутренние отступы блока */
+            border-radius: 8px; /* Закругление углов блока */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень блока */
+        }
+
+        .table-container {
+            margin-top: 20px; /* Отступ сверху для таблицы */
+            width: 50%; /* Ширина контейнера таблицы */
+        }
+
+        .table {
+            width: 50%; /* Ширина таблицы */
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="infodiv" id="info">
+    <h2>Свободные билборды на даты c {{ date_from }} по {{ date_to }}</h2>
+        {% if result %}
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Номер</th>
+                            <th>Цена</th>
+                            <th>Адрес</th>
+                            <th>Размер</th>
+                            <th>Качество</th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for billboard in result %}
+                            <tr>
+                                <td>{{ billboard['bill_id'] }}</td>
+                                <td>{{ billboard['price'] }}</td>
+                                <td>{{ billboard['install_address'] }}</td>
+                                <td>{{ billboard['size'] }}</td>
+                                <td>{{ billboard['quality'] }}</td>
+                                <td>
+                                    <form action="/purchase/availability/show" method="post">
+                                        <input type="hidden" name="bill_id" value="{{ billboard['bill_id'] }}">
+                                        <input type="hidden" name="price" value="{{ billboard['price'] }}">
+                                        <input type="hidden" name="install_address" value="{{ billboard['install_address'] }}">
+                                        <input type="hidden" name="size" value="{{ billboard['size'] }}">
+                                        <input type="hidden" name="quality" value="{{ billboard['quality'] }}">
+                                        <button type="submit" class="btn btn-success">Добавить в корзину</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+        <a href="/purchase/availability" class="btn btn-primary">Назад</a>
+        {% if message %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

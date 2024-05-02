@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/common.css"> <!-- Подключение common.css -->
+
+    <style>
+        /* Дополнительные стили */
+        body {
+            background-color: #f8f9fa; /* Цвет фона страницы */
+            padding: 20px; /* Отступы для контента */
+        }
+
+        .infodiv {
+            margin: 20px auto; /* Центрирование блока */
+            max-width: 600px; /* Максимальная ширина блока */
+            background-color: #fff; /* Цвет фона блока */
+            padding: 20px; /* Внутренние отступы блока */
+            border-radius: 8px; /* Закругление углов блока */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень блока */
+        }
+
+        .table-container {
+            margin-top: 20px; /* Отступ сверху для таблицы */
+        }
+
+        .errordiv {
+            margin-top: 20px; /* Отступ сверху для блока ошибки */
+            background-color: #f44336; /* Цвет фона блока ошибки */
+            color: #fff; /* Цвет текста блока ошибки */
+            padding: 10px; /* Внутренние отступы блока ошибки */
+            border-radius: 8px; /* Закругление углов блока ошибки */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="infodiv" id="info">
+        <form action="/selects/search/search-by-month" method="POST">
+            <div class="form-group">
+                <label for="select_month">Выберите месяц:</label>
+                <select class="form-control" id="select_month" name="select_month" required>
+                    <option value="1">Январь</option>
+                    <option value="2">Февраль</option>
+                    <option value="3">Март</option>
+                    <option value="4">Апрель</option>
+                    <option value="5">Май</option>
+                    <option value="6">Июнь</option>
+                    <option value="7">Июль</option>
+                    <option value="8">Август</option>
+                    <option value="9">Сентябрь</option>
+                    <option value="10">Октябрь</option>
+                    <option value="11">Ноябрь</option>
+                    <option value="12">Декабрь</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="select_year">Выберите год:</label>
+                <input type="number" class="form-control" id="select_year" name="select_year" placeholder="Год" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Посмотреть</button>
+        </form>
+
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Арендатор</th>
+                        <th>Номер телефона</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in result %}
+                        <tr>
+                            <td>{{ item['surname'] }}</td>
+                            <td>{{ item['phone_number'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <form action="/selects">
+            <button type="submit" class="custom-button">Вернуться к запросам</button>
+        </form>
+
+        <form action="/">
+            <button type="submit" class="custom-button">Вернуться на главную</button>
+        </form>
+    </div>
+</body>
+</html>

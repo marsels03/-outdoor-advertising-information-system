@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=stylesheet href="/static/style.css">
+    <title>Расписание</title>
+
+</head>
+<body>
+    <div class="infodiv" id="info">
+        <table>
+            <tr>
+                <th>Номер билборда</th>
+                <th>Дата начала аренды</th>
+                <th>Дата конца аренды</th>
+                <th>Арендатор</th>
+            </tr>
+            {% for item in result %}
+                <tr>
+                    <td> {{ item['bill_id'] }} </td>
+                    <td> {{ item['start_of_lease'] }} </td>
+                    <td> {{ item['end_of_lease'] }} </td>
+                    <td> {{ item['surname'] }} </td>
+                    <td> {{ item['phone_number'] }} </td>
+                </tr>
+            {% endfor %}
+            <tr>
+        </table>
+        <form action="/selects">
+            <td>
+                <input class='custom-button' type="submit" value="Вернуться к запросам">
+            </td>
+        </form>
+        </tr>
+        <form action="/">
+            <tr>
+                <td>
+                    <input class='custom-button' type="submit" value="Вернуться на главную">
+                </td>
+            </tr>
+        </form>
+    </div>
+</body>
+</html>

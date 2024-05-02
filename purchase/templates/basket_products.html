@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Главная</title>
+</head>
+
+<body>
+    <div class="infodiv" id="info">
+        <table>
+            <tr>
+                {% for name in ['Наименование', 'Единица измерения', 'Цена', 'Доступно'] %}
+                    <th> {{ name }} </th>
+                {% endfor %}
+            </tr>
+            {% for product in products %}
+                <tr>
+                    {% for key in ['prod_name', 'prod_measure', 'prod_price', 'prod_count'] %}
+                        <td> {{ product[key] }} </td>
+                    {% endfor %}
+                    <td>
+                        <form action="/purchase/basket/add-product" method="POST">
+                            {% for key, value in product.items() %}
+                                <input type=hidden name="{{ key }}" value="{{ value }}">
+                            {% endfor %}
+                            <input type=hidden name="category_id" value="{{ category_id }}">
+                            <input type="submit" class="button" value="Добавить в корзину">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="5">
+                    <form action="/purchase/basket" method="GET">
+                        <input type="submit" class="button" value="Перейти в корзину">
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <form action="/">
+                        <input type="submit" class="button" value="Вернуться на главную">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="error">
+        {% if message %}
+            {{ message }}
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

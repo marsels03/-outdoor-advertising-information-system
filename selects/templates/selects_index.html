@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Выполнение запроса</title>
+</head>
+
+<body>
+<div class="infodiv" id="info">
+    <table>
+        {% if role == 'manager' %}
+            <tr>
+                <td>
+                    <a href="/selects/products">Управление арендой</a>
+                </td>
+            </tr>
+            <tr>
+                        <td>
+                            <a href="/selects/schedule">Посмотреть расписание</a>
+                        </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="/selects/employees">Просмотр работников</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="/selects/search-by-date_2">Информация о клиентах</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="/selects/owners">Просмотр арендаторов</a>
+                </td>
+            </tr>
+        {% elif role == 'buyer' %}
+            <tr>
+                <td>
+                    <a href="/selects/products">Прайс Билбордов</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="/selects/search">Меню поиска</a>
+                </td>
+            </tr>
+        {% endif %}
+            <tr>
+                    <td>
+                        <a href="/">Назад</a>
+                    </td>
+                </tr>
+    </table>
+</div>
+</body>
+
+</html>

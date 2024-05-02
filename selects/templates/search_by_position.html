@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Поиск по названию</title>
+
+</head>
+
+<body>
+<div class="infodiv" id="info">
+    <tr>
+        <th>
+            Поиск сотрудника по должности
+        </th>
+    </tr>
+
+    {% if employees %}
+        <table>
+            <tr>
+                <th>Должность</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Отчество</th>
+                <th>Дата рождения</th>
+                <th>Зарплата</th>
+            </tr>
+            {% for employee in employees %}
+                <tr>
+                    <td> {{ employee['employee_position'] }} </td>
+                    <td> {{ employee['employee_name'] }} </td>
+                    <td> {{ employee['employee_surname'] }} </td>
+                    <td> {{ employee['employee_patronymic'] }} </td>
+                    <td> {{ employee['employee_birthday'] }} </td>
+                    <td> {{ employee['employee_wage'] }} </td>
+                </tr>
+            {% endfor %}
+            <tr>
+        </table>
+
+        <form action="/selects/employees/search-by-position" method="GET">
+            <tr>
+                <td style="padding: 0;">
+                    <input type="submit" value="Найти сотрудника другой должности">
+                </td>
+            </tr>
+        </form>
+
+    {% else %}
+        <form action="/selects/employees/search-by-position" method="POST">
+            <tr>
+                <td style="padding: 0;">
+                    <input type="text" placeholder="Название" name="name">
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 0;">
+                    <input type="submit" value="Подтвердить">
+                </td>
+            </tr>
+        </form>
+    {% endif %}
+
+    <form action="/selects">
+        <tr>
+            <td style="padding: 0;">
+                <input type="submit" value="Вернуться к запросам">
+            </td>
+        </tr>
+    </form>
+    <form action="/">
+        <tr>
+            <td style="padding: 0;">
+                <input type="submit" value="Вернуться на главную">
+            </td>
+        </tr>
+    </form>
+    {% if message %}
+        <div class="errordiv" id="error">
+            {{ message }}
+        </div>
+    {% endif %}
+</div>
+</body>
+
+</html>

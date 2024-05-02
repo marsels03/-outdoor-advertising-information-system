@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Авторизация</title>
+</head>
+
+<body>
+    <div class="infodiv" id="info">
+        <table>
+            <tr>
+                <th>
+                    Авторизация
+                </th>
+            </tr>
+            <form action="/auth/sign-in" method="POST">
+                <tr>
+                    <td style>
+                        <input type="text" placeholder="Логин" name="login" autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td style>
+                        <input type="password" placeholder="Пароль" name="password">
+                    </td>
+                </tr>
+                <tr>
+                    <td style>
+                        <input type="submit" value="Ввод">
+                    </td>
+                </tr>
+            </form>
+            <form action="/">
+                <tr>
+                    <td style="padding: 0;">
+                        <input type="submit" value="Выйти">
+                    </td>
+                </tr>
+            </form>
+            {% if message %}
+                <tr>
+                    <td style="padding: 0;">
+                        <div class="errordiv" id="error">
+                            {{ message }}
+                        </div>
+                    </td>
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+
+</body>
+
+</html>

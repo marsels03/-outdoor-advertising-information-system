@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/auth/sql/add_buyer.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/auth/sql/select_login.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/auth/sql/select_owner_id.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/auth/sql/select_role.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/purchase/sql/add_schedule.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/purchase/sql/date_view.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/reports/sql/check_created_rating_report.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/reports/sql/check_created_sales_report.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/reports/sql/get_sales_report.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/sql/add_product.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/sql/date_view.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/sql/delete_current_product.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/sql/select_all.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/sql/select_by_name.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/sql/select_by_price.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/sql/select_employee.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/sql/select_owner.sql" dialect="MySQL" />
+  </component>
+</project>
